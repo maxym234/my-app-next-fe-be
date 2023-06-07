@@ -1,0 +1,4 @@
+{
+    "port": 5000,
+    "mongoURL": "mongodb+srv://max:washington123698745@cluster0.fvfyfso.mongodb.net/calendar-app?retryWrites=true&w=majority"
+}

@@ -1,0 +1,51 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+div[class*="ant-picker-cell-inner ant-picker-calendar-date ant-picker-calendar-date-today"] {
+    background: #ffe6e8 !important;
+    border-color: #e49092 !important;
+    border: 2px solid #e49092 !important;
+
+    [class*="ant-picker-calendar-date-value"] {
+        color: #f04e51 !important;
+    }
+}
+ .ant-picker-cell-inner.ant-picker-calendar-date {
+    border: 1px solid #0505050f !important;
+    border-radius: 5% !important;
+    margin-top: 10px !important;
+}
+.ant-picker-calendar .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+    background: #ffe6e8 !important;
+    border-color: #e49092 !important;
+    border: 2px solid #e49092 !important;
+
+    [class*="ant-picker-calendar-date-value"] {
+        color: #9e8b8b !important;
+    }
+}
+button [class*="ant-btn css-dev-only-do-not-override-ed5zg0 ant-btn-default"] {
+    display: flex;
+    max-width: 160px;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 9999px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    transition: none;
+    margin-bottom: 10px;
+    margin-right: 10px;
+} 
+button[class*="ant-btn css-dev-only-do-not-override-ed5zg0 ant-btn-default"]:hover {
+    background: linear-gradient(to right, #f5a778, #e6938f, #e28c96) !important;
+    color: #fff !important;
+    border: #fff !important;
+}
+button[class*="ant-btn css-dev-only-do-not-override-ed5zg0 ant-btn-default"]:focus {
+    background: linear-gradient(to right, #f5a778, #e6938f, #e28c96) !important;
+    color: #fff !important;
+    border: #fff !important;
+}
