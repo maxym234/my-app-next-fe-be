@@ -11,16 +11,16 @@ interface ApiFetchParams {
 export const apiFetch = async (params: ApiFetchParams) => {
     let options = { method: params.method, headers: new Headers(), body: params.body, token: params.token, path: params.path};
     const { token, body, path, headers } = options
+    console.log(options, 'options');
+    
     if (token) {
       headers.append('Authorization', `Bearer ${token}`);
     }
-    // if (body) {
-    //   if (body instanceof FormData) {
-    //     options.body = body;
-    //   } else {
-    //     headers.append('Content-Type', 'application/json');
-    //     options.body = JSON.stringify(body);
-    //   }
-    // }
+    if (body) {
+      if (body instanceof FormData) {
+        headers.append('Content-Type', 'application/json');
+        options.body = JSON.stringify(body);
+      }
+    }
    return await fetch(`${apiUrl}${path}`, options);
 }

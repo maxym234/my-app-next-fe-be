@@ -2,6 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+body {
+    color: #e9696c;
+}
+
+
+/*Calendar style*/
 div[class*="ant-picker-cell-inner ant-picker-calendar-date ant-picker-calendar-date-today"] {
     background: #ffe6e8 !important;
     border-color: #e49092 !important;
@@ -11,7 +17,7 @@ div[class*="ant-picker-cell-inner ant-picker-calendar-date ant-picker-calendar-d
         color: #f04e51 !important;
     }
 }
- .ant-picker-cell-inner.ant-picker-calendar-date {
+.ant-picker-cell-inner.ant-picker-calendar-date {
     border: 1px solid #0505050f !important;
     border-radius: 5% !important;
     margin-top: 10px !important;
@@ -25,7 +31,83 @@ div[class*="ant-picker-cell-inner ant-picker-calendar-date ant-picker-calendar-d
         color: #9e8b8b !important;
     }
 }
-button [class*="ant-btn css-dev-only-do-not-override-ed5zg0 ant-btn-default"] {
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    left: 36px;
+    top: 36px;
+  }
+  
+  /* Color/shape of burger icon bars */
+  .bm-burger-bars {
+    background: #e9696c;
+  }
+  
+  /* Color/shape of burger icon bars on hover*/
+  .bm-burger-bars-hover {
+    background: #a90000;
+  }
+  
+  /* Position and sizing of clickable cross button */
+  .bm-cross-button {
+    height: 24px;
+    width: 24px;
+  }
+  
+  /* Color/shape of close button cross */
+  .bm-cross {
+    background: #bdc3c7;
+  }
+  
+  /*
+  Sidebar wrapper styles
+  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+  */
+  .bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+  }
+  
+  /* General sidebar styles */
+  .bm-menu {
+    background: #e49092;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+  }
+  
+  /* Morph shape necessary with bubble or elastic */
+  .bm-morph-shape {
+    fill: #e49092;
+  }
+  
+  /* Wrapper for item list */
+  .bm-item-list {
+    color: #ffffff;
+    padding: 0.8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Individual item */
+  .bm-item {
+    display: flex !important;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  /* Styling of overlay */
+  .bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+
+  /* Button style */
+button[class*="ant-btn css-dev-only-do-not-override-dfjnss ant-btn-default"],
+button[class*="ant-btn css-dev-only-do-not-override-dfjnss ant-btn-primary"] {
     display: flex;
     max-width: 160px;
     width: 100%;
@@ -34,18 +116,41 @@ button [class*="ant-btn css-dev-only-do-not-override-ed5zg0 ant-btn-default"] {
     border-radius: 9999px;
     align-items: center;
     justify-content: center;
-    border: 1px solid;
+    border: 1px solid #e9696c;
+    color: #e9696c;
     transition: none;
     margin-bottom: 10px;
     margin-right: 10px;
 } 
-button[class*="ant-btn css-dev-only-do-not-override-ed5zg0 ant-btn-default"]:hover {
+button[class*="ant-btn css-dev-only-do-not-override-dfjnss ant-btn-default"]:hover,
+button[class*="ant-btn css-dev-only-do-not-override-dfjnss ant-btn-primary"]:hover {
     background: linear-gradient(to right, #f5a778, #e6938f, #e28c96) !important;
     color: #fff !important;
     border: #fff !important;
 }
-button[class*="ant-btn css-dev-only-do-not-override-ed5zg0 ant-btn-default"]:focus {
+button[class*="ant-btn css-dev-only-do-not-override-dfjnss ant-btn-default"]:focus,
+button[class*="ant-btn css-dev-only-do-not-override-dfjnss ant-btn-primary"]:focus {
     background: linear-gradient(to right, #f5a778, #e6938f, #e28c96) !important;
     color: #fff !important;
     border: #fff !important;
+}
+
+/*Modal style*/
+.ant-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+/*Input style*/
+
+span[class*="ant-input-affix-wrapper css-dev-only-do-not-override-dfjnss"]:hover, 
+span[class*="ant-input-affix-wrapper ant-input-password css-dev-only-do-not-override-dfjnss"]:hover {
+  border-color: #e9696c !important;
+}
+span[class*="ant-input-affix-wrapper ant-input-affix-wrapper-focused css-dev-only-do-not-override-dfjnss"], 
+span[class*="ant-input-affix-wrapper ant-input-affix-wrapper-focused ant-input-password css-dev-only-do-not-override-dfjnss"] {
+  border-color: #e9696c !important;
+  box-shadow: none !important;
 }

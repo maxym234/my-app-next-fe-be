@@ -1,47 +1,40 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Calendar as CalendarAntd, Typography, Badge, BadgeProps }  from 'antd/lib';
 import { AvalibelTime } from "@/modules/main/avalibelTime/main-time.components";
 import type { Dayjs } from 'dayjs';
 import moment from 'moment';
+import { fetchAvalibleAllTime } from '@/slices/avalibleAllTime.slice';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
 
 
 export const Calendar: React.FC = () => {  
     const [date, setDate] = useState('')
+    const dispatch = useAppDispatch();
+    const data = useAppSelector(state => state.avalibleAllTimeSlice.data);
+    
+    useEffect(() => {
+      dispatch(fetchAvalibleAllTime());
+    }, [dispatch]);
+    
     const dateCurrent = new Date().getDate();    
     const getListData = (value: Dayjs, text: string) => {
-        let listData;
-        switch (value.date()) {
-          case 8:
-            listData = [
-              { type: 'warning', content: text },
-              { type: 'success', content: 'This is usual event.' },
-            ];
-            break;
-          case 10:
-            listData = [
-              { type: 'warning', content: 'This is warning event.' },
-              { type: 'success', content: 'This is usual event.' },
-              { type: 'error', content: 'This is error event.' },
-            ];
-            break;
-          case 15:
-            listData = [
-              { type: 'warning', content: 'This is warning event' },
-              { type: 'success', content: 'This is very long usual event。。....' },
-              { type: 'error', content: 'This is error event 1.' },
-            ];
-            break;
-          default:
-        }
-        return listData || [];
+      const valueDate = moment(value.toJSON()).format('YYYY-MM-DD')
+        const list = data?.find((e, i, arr) => {
+          if(valueDate === e?.date) {            
+            return e;
+          }
+        })
+          
+        return list || {}
       };
-    const dateCellRender = (value: Dayjs) => {
+    const dateCellRender = (value: Dayjs) => {        
         const listData = getListData(value, 'text');
+            
         return (
           <ul className="events">
-            {listData.map((item) => (
-              <li key={item.content}>
-                <Badge status={item.type as BadgeProps['status']} text={item.content} />
+            {listData?.time?.map((item: any, index: number) => (
+              <li key={item?.id}>
+                <Badge status='success' text={item?.time} />
               </li>
             ))}
           </ul>
@@ -51,7 +44,7 @@ export const Calendar: React.FC = () => {
         return dateCellRender(date);
     }
     return (
-        <div>
+        <div className="max-w-[1200px] flex flex-col m-auto">
             <CalendarAntd 
                 cellRender={cellRender}
                 disabledDate={

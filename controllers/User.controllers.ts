@@ -40,7 +40,9 @@ export const registration = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {    
     try { 
         const { email, password } = req.body        
-        const user = await UserModel.findOne({ email })        
+        const user = await UserModel.findOne({ email })
+        console.log(user, "user", req.body );
+                
         //перевірка на логін і пароль
         if (!user) {
             return res.status(404).json({

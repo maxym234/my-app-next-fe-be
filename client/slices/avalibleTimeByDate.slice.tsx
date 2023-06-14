@@ -1,10 +1,13 @@
-
 import { apiFetch } from '@/plugins/apiFetch'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
+interface Time {
+  id: number,
+  time: string
+}
 interface AvalibelTime {
   date: string,
-  time: any[]
+  time: Time[]
 }
 
 interface AvalibelTimeState {
@@ -27,17 +30,7 @@ export const fetchAvalibleTime = createAsyncThunk<AvalibelTime, string>(
 const avalibleTimeSlice = createSlice({
   name: 'avalibleTime',
   initialState,
-  reducers: {
-    // increment(state) {
-    //   state.data++
-    // },
-    // decrement(state) {
-    //   state.data--
-    // },
-    // incrementByAmount(state, action: PayloadAction<number>) {
-    //   state.data += action.payload
-    // },
-  },
+  reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchAvalibleTime.pending, (state) => {
             state.status = 'loading'
@@ -54,5 +47,4 @@ const avalibleTimeSlice = createSlice({
     }
 })
 
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions
 export default avalibleTimeSlice.reducer

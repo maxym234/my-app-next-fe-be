@@ -7,11 +7,11 @@
     {
         "id": 1,
         "name": "Review",
-        "url": "/"
+        "url": "/about"
     },
     {
         "id": 1,
         "name": "My clients",
-        "url": "/"
+        "url": "/clients"
     }
 ]

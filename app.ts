@@ -15,7 +15,7 @@ router.post('/auth/registration', registerValidator, UserController.registration
 router.post('/auth/login', UserController.login)
 
 router.post('/avalible-time', TimeController.create)
-router.get('/avalible-allTime', TimeController.getAll)
+router.get('/avalible-all-time', TimeController.getAll)
 router.get('/avalible-time/:date', TimeController.getOne)
 app.use('/api', router);
 

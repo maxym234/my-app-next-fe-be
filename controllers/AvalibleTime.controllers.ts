@@ -1,11 +1,26 @@
+import { v4 as uuidv4 } from 'uuid';
 import {Request, Response } from 'express'; 
 import { AvalibleTimeModel } from '../models/avalibleTimes'
+
+interface TimeSlot {
+    id: number;
+    time: string;
+  }
+  
 
 export const create = async (req: Request, res: Response) => {
     
     try { 
         const { date, time } = req.body
-        const doc = new AvalibleTimeModel({date, time})        
+        let currentId = 1
+        const timeSlotsWithIds = time.map((slot: TimeSlot) => {
+            if (!slot.id) {
+              slot.id = currentId++;
+            }
+            return slot;
+          });     
+                  
+        const doc = new AvalibleTimeModel({date, time: timeSlotsWithIds }) 
         const avalibleTime = await doc.save()
         res.json(avalibleTime)
     } catch (e) {
