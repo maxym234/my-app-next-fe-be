@@ -1,7 +1,7 @@
 //require для підключення пакетів
 import express, { Express, Router } from 'express';
 import * as TimeController from './controllers/AvalibleTime.controllers';
-import * as UserController from './controllers/User.controllers';
+import * as UserController from './controllers/Auth.controllers';
 import { registerValidator } from './utils/validations';
 import cors from 'cors';
 const config = require('config')

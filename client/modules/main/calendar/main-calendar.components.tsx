@@ -55,10 +55,11 @@ export const Calendar: React.FC = () => {
                     }
                     return false;
                 }}
-                headerRender={({ value }) => {
-                    const selectDate = moment(value.toJSON()).format('YYYY-MM-DD')
+                onSelect={(value) => {
+                  const selectDate = moment(value.toJSON()).format('YYYY-MM-DD')
                     setDate(selectDate);
-                    
+                }}
+                headerRender={({ value }) => {                    
                     return (
                     <div style={{ padding: 8 }}>
                         <Typography.Title className='text-center font-bold' level={4}>{value.toDate().toDateString()}</Typography.Title>

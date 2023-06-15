@@ -1,7 +1,7 @@
 import { apiFetch } from '@/plugins/apiFetch'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-interface Time {
+type Time = {
   id: number,
   time: string
 }

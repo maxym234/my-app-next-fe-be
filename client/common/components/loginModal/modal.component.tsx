@@ -8,8 +8,9 @@ import { ModalUI } from '@/ui/modal';
 import { ButtonUI } from '@/ui/button';
 
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { fetchLoginUser } from '@/slices/loginUser.slice';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   isModalOpen: boolean,
@@ -23,18 +24,26 @@ interface FormValues {
 
 export const LoginModal: React.FC<Props> = ({isModalOpen, setIsModalOpen}) => {
   const dispatch = useAppDispatch();
+  const router = useRouter()
   const { handleSubmit, control, getValues, reset } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = data => dispatch(fetchLoginUser(data));
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
+  const onSubmit: SubmitHandler<FormValues> = async data => {
+    try {
+      await dispatch(fetchLoginUser(data)).unwrap();      
+      window.location.reload()
+      setIsModalOpen(false);
+    } catch (error) {
+      console.log(error);
+      
+    }
+
+  }
 
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
     return (
-      <ModalUI footer={null} title="Log In" isModalOpen={isModalOpen} handleOk={handleOk} handleCancel={handleCancel} okText='Login'>
+      <ModalUI footer={null} title="Log In" isModalOpen={isModalOpen} handleCancel={handleCancel} okText='Login'>
         <form onSubmit={handleSubmit(onSubmit)} className='flex h-[100svh] max-h-48 flex-col justify-between items-center'>          
           <Controller
             name="email"

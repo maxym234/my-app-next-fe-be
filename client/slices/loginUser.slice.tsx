@@ -7,24 +7,30 @@ interface UserData {
   email: string,
   hashedPassword: string,
   fullName: string,
-  createdAt: Dayjs,
+  createdAt: number,
   updatedAt: Dayjs,
 }
 
 interface UserState {
     data: UserData,
     status: any,
-    error: any
+    error: string | null
 }
 
 
-const initialState: UserState = { data: { _id: 0, email: '', hashedPassword: '', fullName: '', createdAt: dayjs(), updatedAt: dayjs()}, status: null, error: null }
+const initialState: UserState = { data: { _id: 0, email: '', hashedPassword: '', fullName: '', createdAt: 0, updatedAt: dayjs()}, status: null, error: null }
  
-export const fetchLoginUser = createAsyncThunk<UserData, object>(
+export const fetchLoginUser = createAsyncThunk<UserData, object, {rejectValue: string}>(
     'loginUser/fetchLoginUser',
-    async (params: any) => {        
+    async (params, { rejectWithValue }) => {        
         const res =  await apiFetch({ method: 'Post', path: `auth/login`, body: params});
-        return await res.json()
+        const userData = await res.json();
+        if(!res.ok) {
+            return rejectWithValue('Error')
+        }   
+
+        localStorage.setItem('token', JSON.stringify(userData));
+        return userData
     }
 )
 
@@ -43,7 +49,7 @@ const loginUserSlice = createSlice({
         })
         builder.addCase(fetchLoginUser.rejected, (state) => {
             state.status = 'reject'
-            state.error = null
+            state.error = 'Error'
         })
     }
 })

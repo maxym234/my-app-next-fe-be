@@ -13,7 +13,7 @@ export const AvalibelTime: React.FC<Props> = ({ date }) => {
   const data = useAppSelector(state => state.avalibleTimeSlice.data);
   useEffect(() => {
     dispatch(fetchAvalibleTime(date));
-  }, [date]);
+  }, [date, dispatch]);
 
     return (
         <div className="mt-[30px] mb-[15px]">

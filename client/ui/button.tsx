@@ -7,7 +7,7 @@ interface Props {
     htmlType?: any,
 }
 
-export const ButtonUI: React.FC<Props> = ({ key, ...props }) => {  
+export const ButtonUI: React.FC<Props> = ({ ...props }) => {  
     return (
         <Button {...props} />
     )
